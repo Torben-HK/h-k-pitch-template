@@ -29,7 +29,7 @@ const timelineCards = [
     title: "2. SICHTBARKEIT",
     subline: "Relevanz in Entscheidungsphasen.",
     iconSrc: "/assets/sections/modell/view-web.gif",
-    body: "Grass-Merkur muss dort präsent sein, wo Entscheider recherchieren, vergleichen und absichern.",
+    body: "Ihr Unternehmen muss dort präsent sein, wo Entscheider recherchieren, vergleichen und absichern.",
     list: [
       "Google & KI-gestützte Recherche",
       "LinkedIn & Fachplattformen",

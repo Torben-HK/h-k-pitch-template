@@ -31,48 +31,48 @@ type Tab = {
 const todayItems: Item[] = [
   {
     id: "today-1",
-    title: "Drei strategisch verzahnte Geschäftsfelder",
-    subtitle: "Co-Location. Managed Services. Consulting.",
+    title: "Klare Leistungsfelder mit gemeinsamer Zielrichtung",
+    subtitle: "Beratung. Umsetzung. Weiterentwicklung.",
     body:
-      "Drei klar definierte Leistungscluster, die Infrastruktur, Betrieb und Beratung miteinander verbinden und so ganzheitliche Verantwortung ermöglichen."
+      "Ihre Leistungen greifen bereits ineinander. Dieses Fundament ermöglicht eine durchgängige Kundenerfahrung und stärkt die Positionierung."
   },
   {
     id: "today-2",
-    title: "Netzwerkbasierte Kundengewinnung auf Entscheider-Ebene",
-    subtitle: "Kein Zufall. Sondern Vertrauen, das sich bewährt hat.",
+    title: "Kundengewinnung über Netzwerk und Empfehlungen",
+    subtitle: "Vertrauen wirkt, ist aber nur begrenzt skalierbar.",
     body:
-      "Neue Kunden entstehen über ein über Jahre gewachsenes Netzwerk, persönliche Beziehungen und Empfehlungen zufriedener Bestandskunden."
+      "Neue Anfragen entstehen aktuell vor allem über persönliche Kontakte, Empfehlungen und bestehende Beziehungen."
   },
   {
     id: "today-3",
-    title: "Hoher Vertrauensfaktor bei langjährigen Bestandskunden",
-    subtitle: "Grass-Merkur entwickelt keine Kunden, sondern Vertrauen.",
+    title: "Starke Bindung bei bestehenden Kunden",
+    subtitle: "Langfristiges Vertrauen ist ein echter Wettbewerbsvorteil.",
     body:
-      "Kunden geben kritische Systeme, sensible Daten und unternehmenskritische Prozesse in die Hände von Grass-Merkur. Das ist keine Kunden-Lieferanten-Beziehung. Das ist Vertrauen auf Infrastruktur-Ebene."
+      "Die bestehenden Kundenbeziehungen zeigen Verlässlichkeit und Qualität. Dieses Vertrauen kann strategisch in planbares Wachstum übersetzt werden."
   }
 ];
 
 const potentialsItems: Item[] = [
   {
     id: "pot-1",
-    title: "Digitale Präsenz in Entscheidungsphasen",
-    subtitle: "Heute entsteht Sichtbarkeit primär über Netzwerk.",
+    title: "Mehr Sichtbarkeit in relevanten Entscheidungsphasen",
+    subtitle: "Zusätzliche Präsenz schafft planbare Nachfrage.",
     body:
-      "Potenzial liegt in zusätzlicher Präsenz bei Google, in KI-Systemen und auf LinkedIn – dort, wo Entscheider recherchieren und sich absichern."
+      "Potenzial liegt in gezielter Sichtbarkeit in Suchmaschinen, Fachmedien, sozialen Netzwerken und KI-gestützten Rechercheumfeldern."
   },
   {
     id: "pot-2",
-    title: "Strategische Positionierung statt reiner Infrastruktur-Wahrnehmung",
-    subtitle: "Grass-Merkur könnte klarer als strategischer IT-Partner auftreten.",
+    title: "Schärfere Positionierung als strategischer Partner",
+    subtitle: "Differenzierung statt Austauschbarkeit.",
     body:
-      "Mit Infrastruktur, Managed Services und Consulting aus einer Hand. Nicht nur als Betreiber, sondern noch mehr als Verantwortungspartner."
+      "Mit einem klaren Nutzenversprechen wird Ihr Unternehmen stärker als strategischer Partner wahrgenommen und nicht nur als operativer Dienstleister."
   },
   {
     id: "pot-3",
-    title: "Regulatorischer Rückenwind als Wachstumshebel",
-    subtitle: "KRITIS & NIS2 erhöhen den Handlungsdruck im Markt.",
+    title: "Marktdynamik als Wachstumshebel nutzen",
+    subtitle: "Veränderungen im Markt erhöhen den Entscheidungsdruck.",
     body:
-      "Grass-Merkur hat die Kompetenz, sich als Ansprechpartner für sichere, regulatorisch belastbare IT-Infrastruktur zu positionieren."
+      "Wer Orientierung gibt und komplexe Entscheidungen vereinfacht, gewinnt früher Vertrauen und baut nachhaltige Nachfrage auf."
   }
 ];
 
@@ -80,43 +80,45 @@ const tomorrowItems: Item[] = [
   {
     id: "mor-1",
     title: "Systematische Sichtbarkeit",
-    subtitle: "Grass-Merkur ist bei Entscheidern präsent. Genau dort, wo Entscheider recherchieren, vergleichen und absichern.",
+    subtitle:
+      "Ihr Unternehmen ist dort präsent, wo Entscheider recherchieren, vergleichen und priorisieren.",
     body: "",
     list: [
-      "Google",
-      "in KI-gestützten Recherche-Systemen",
-      "auf LinkedIn und relevanten Fachplattformen"
+      "Suchmaschinen",
+      "KI-gestützte Rechercheumfelder",
+      "relevante Netzwerke und Fachplattformen"
     ],
     bodyAfterList:
-      "Nicht personenabhängig, nicht zufallsgetrieben, sondern mit klaren Vertriebssystemen, messbarer Sichtbarkeit und kontinuierlichen qualifizierten Anfragen. Wachstum wird planbar."
+      "Nicht zufallsgetrieben, sondern mit klaren Prozessen, messbarer Sichtbarkeit und planbaren qualifizierten Anfragen."
   },
   {
     id: "mor-2",
-    title: "Klare Positionierung als strategischer IT-Partner",
-    subtitle: "Der Markt nimmt Grass-Merkur als strategischen Partner wahr. Als vertrauenswürdigen Partner für",
+    title: "Klare Positionierung als strategischer Partner",
+    subtitle:
+      "Der Markt nimmt Ihr Unternehmen als verlässlichen Partner wahr. Als starke Instanz für:",
     body: "",
     list: [
-      "Hybrid-IT-Architekturen",
-      "sichere Cloud-Integration",
-      "IT-Transformation mit echter Verantwortung"
+      "klare Entscheidungsgrundlagen",
+      "wirksame Umsetzung",
+      "nachhaltige Ergebnisse"
     ],
     bodyAfterList:
-      "Infrastruktur, Managed Services und Consulting werden als integrierte Kompetenz verstanden – nicht als einzelne Leistungen."
+      "Leistungen werden als zusammenhängendes System verstanden und nicht als isolierte Einzelmaßnahmen."
   },
   {
     id: "mor-3",
-    title: "Kompetenzzentrum für sichere, regulatorisch belastbare IT",
+    title: "Skalierbares Wachstumsmodell mit Substanz",
     subtitle:
-      "Grass-Merkur wird Orientierungspunkt für KRITIS- und NIS2-Anforderungen. Grass-Merkur wird der Ansprechpartner für:",
+      "Ihr Unternehmen wird zur ersten Wahl, wenn Qualität, Verlässlichkeit und Verantwortung entscheidend sind. Wahrgenommen werden:",
     body: "",
     list: [
-      "regulatorische Sicherheit",
-      "Compliance",
-      "belastbare Infrastruktur",
-      "langfristige Stabilität"
+      "fachliche Kompetenz",
+      "konsistente Qualität",
+      "belastbare Prozesse",
+      "langfristige Wirksamkeit"
     ],
     bodyAfterList:
-      "Damit ist Grass-Merkur nicht der nächste Anbieter, sondern die Referenz."
+      "So entsteht eine Positionierung, die nicht austauschbar ist."
   }
 ];
 

@@ -33,7 +33,7 @@ const detailSlides = [
     mediaSrc: "/assets/sections/modell-detail/video-mock-up 1_1.mp4",
     body: "Nicht Reichweite ist das Ziel – sondern Wahrnehmung bei den richtigen Entscheidern.",
     list: [
-      "SEO & GEO (inkl. Nischen wie „Lift & Shift“)",
+      "SEO & GEO für zentrale Suchintentionen",
       "Sichtbarkeit in KI-Systemen & LLMs",
       "LinkedIn-Strategie & Reputationsmarketing über Thought Leadership Contents",
       "Blogmarketing, White Papers & Fachartikel",

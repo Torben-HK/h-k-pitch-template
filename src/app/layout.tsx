@@ -20,8 +20,9 @@ const ralewayBody = Raleway({
 });
 
 export const metadata: Metadata = {
-  title: "Grass Merkur Pitch",
-  description: "Pitch site built with Next.js, Tailwind, and GSAP."
+  title: "Pitch Template | Hein & Kollegen",
+  description:
+    "Modulares Pitch-Template für kundenneutrale Präsentationen mit Next.js, Tailwind und GSAP."
 };
 
 export default function RootLayout({

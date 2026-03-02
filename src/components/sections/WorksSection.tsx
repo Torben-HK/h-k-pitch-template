@@ -4,30 +4,35 @@ import { useRef } from "react";
 import { useSplitScale } from "@/components/typography/useSplitScale";
 import { Section } from "@/components/layout/Section";
 
-const works = [
+type WorkItem = {
+  title: string;
+  image: string;
+  description?: string;
+  href?: string;
+};
+
+const works: WorkItem[] = [
   {
-    title: "Redaktionsplanung",
-    image: "/assets/sections/works/Image20260302152602.png",
-    href: "https://trello.com/b/f6oeLRwE/grass-merkur-social-media"
+    title: "Redaktionsplanung für Thought Leadership",
+    image: "/assets/sections/works/Image20260302152602.png"
   },
   {
-    title: "TalentRadar",
-    image: "/assets/sections/works/talent-radar.png",
-    href: "https://www.figma.com/proto/BdedKdxbrrpM26Wp9fDId2/Grass-Merkur-Recruiting?node-id=1-50&t=B6Hx3v7xJwcvnGi7-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
+    title: "TalentRadar für Employer Branding",
+    image: "/assets/sections/works/talent-radar.png"
   },
   {
-    title: "KI-Support-Framework für Lift-&-Shift-Projekte",
+    title: "KI-gestütztes Support-Framework für wiederkehrende Anfragen",
     image: "/assets/sections/works/ki-framework.png"
   },
   {
-    title: "Jährlicher Trust-Report für kritische IT-Infrastruktur",
-    description: "Ein unabhängiger Blick auf Risiken, Entscheidungen und Vertrauen.",
+    title: "Jährlicher Markt- und Vertrauensreport",
+    description: "Ein strukturierter Blick auf Chancen, Risiken und Entscheidungen.",
     image: "/assets/sections/works/trust-reports.png"
   },
   {
-    title: "KRITIS Leadership Summit Ibiza",
+    title: "Leadership Summit für Entscheider",
     description:
-      "Ein invitation-only Summit für KRITIS-Entscheider, CIOs und Geschäftsführer.",
+      "Ein exklusives Format für strategischen Austausch auf Geschäftsführungs- und Leitungsebene.",
     image: "/assets/sections/works/summit.png"
   }
 ];

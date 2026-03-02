@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import { useGSAP } from "@gsap/react";
@@ -381,13 +381,12 @@ export default function TeamVideo() {
       <div className="content-wrap flex flex-col items-center gap-10 text-center lg:gap-16">
         <div className="flex flex-col gap-2">
           <h2 className="split-scale">IHR SEID KEIN PROJEKT FÜR UNS.</h2>
-          <h3 className="split-scale">ES SEID UNSERE NEUE HERZENSANGELEGENHEIT.</h3>
+          <h3 className="split-scale">IHR SEID UNSERE NÄCHSTE ERFOLGSGESCHICHTE.</h3>
         </div>
 
         <p className="split-lines">
-          Verantwortung braucht Menschen, die sie wahrnehmen. Sonst bleibt sie ein leeres Versprechen.
-          <br />
-          Und hier sind die Menschen, die diese Verantwortung übernehmen wollen.
+          Strategie wirkt nur mit Menschen, die Verantwortung übernehmen. Hier ist das Team, das
+          Ihr Wachstum aktiv vorantreibt.
         </p>
       </div>
 
@@ -558,3 +557,4 @@ export default function TeamVideo() {
     </section>
   );
 }
+

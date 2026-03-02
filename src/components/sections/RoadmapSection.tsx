@@ -6,6 +6,10 @@ import { gsap, ScrollTrigger, DrawSVGPlugin } from "@/lib/gsap";
 import { useSplitScale } from "@/components/typography/useSplitScale";
 import { Section } from "@/components/layout/Section";
 
+const phaseOneHeadline = ["JA?", "NEIN?", "VIELLEICHT?"];
+const phaseTwoHeadline = ["FALLS JA", "DANN VIELLEICHT SO?"];
+const headlineSequenceDelay = 1.25;
+
 const roadmapCards = [
   {
     title: "1. Bestandsaufnahme Marketing- & Vertriebssystem",
@@ -81,13 +85,100 @@ const roadmapCards = [
 
 export default function RoadmapSection() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const headerRef = useRef<HTMLDivElement | null>(null);
   const gridRef = useRef<HTMLDivElement | null>(null);
   const pathSvgRef = useRef<SVGSVGElement | null>(null);
   const pathRef = useRef<SVGPathElement | null>(null);
   const cardsRef = useRef<Array<HTMLDivElement | null>>([]);
   const overlayRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const headlineFallbackRef = useRef<HTMLSpanElement | null>(null);
+  const headlineStageRef = useRef<HTMLSpanElement | null>(null);
+  const phaseOneGroupRef = useRef<HTMLSpanElement | null>(null);
+  const phaseTwoGroupRef = useRef<HTMLSpanElement | null>(null);
+  const phaseOneWordRefs = useRef<Array<HTMLSpanElement | null>>([]);
+  const phaseTwoWordRefs = useRef<Array<HTMLSpanElement | null>>([]);
 
   useSplitScale({ scope: sectionRef });
+
+  useGSAP(
+    () => {
+      const header = headerRef.current;
+      const fallback = headlineFallbackRef.current;
+      const stage = headlineStageRef.current;
+      const phaseOneGroup = phaseOneGroupRef.current;
+      const phaseTwoGroup = phaseTwoGroupRef.current;
+      const phaseOneWords = phaseOneWordRefs.current.filter(Boolean) as HTMLSpanElement[];
+      const phaseTwoWords = phaseTwoWordRefs.current.filter(Boolean) as HTMLSpanElement[];
+
+      if (
+        !header ||
+        !fallback ||
+        !stage ||
+        !phaseOneGroup ||
+        !phaseTwoGroup ||
+        !phaseOneWords.length ||
+        !phaseTwoWords.length
+      ) {
+        return;
+      }
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (prefersReducedMotion) {
+        gsap.set(fallback, { autoAlpha: 1 });
+        gsap.set(stage, { display: "none" });
+        return;
+      }
+
+      gsap.set(fallback, { autoAlpha: 0 });
+      gsap.set(stage, { display: "flex", autoAlpha: 1 });
+      gsap.set([phaseOneWords, phaseTwoWords], {
+        opacity: 0,
+        scale: 0.7,
+        transformOrigin: "center center"
+      });
+      gsap.set(phaseOneGroup, { autoAlpha: 1 });
+      gsap.set(phaseTwoGroup, { autoAlpha: 0 });
+
+      const headlineTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: header,
+          start: "center center",
+          toggleActions: "play none none none",
+          once: true
+        }
+      });
+
+      headlineTimeline
+        .to(phaseOneWords, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.55,
+          ease: "power2.out"
+        }, `+=${headlineSequenceDelay}`)
+        .to(phaseOneGroup, {
+          autoAlpha: 0,
+          duration: 0.5,
+          ease: "power2.out"
+        }, "+=0.8")
+        .set(phaseTwoGroup, { autoAlpha: 1 })
+        .to(phaseTwoWords, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.55,
+          ease: "power2.out"
+        });
+
+      return () => {
+        headlineTimeline.kill();
+      };
+    },
+    { scope: sectionRef }
+  );
 
   useGSAP(
     () => {
@@ -232,10 +323,51 @@ export default function RoadmapSection() {
   );
 
   return (
-    <Section ref={sectionRef} className="w-full mt-64" innerClassName="w-full" useContentWrap={false}>
-      <div className="content-wrap flex flex-col items-center gap-3 text-center">
+    <Section ref={sectionRef} className="w-full" innerClassName="w-full" useContentWrap={false}>
+      <div
+        ref={headerRef}
+        className="content-wrap flex min-h-[100svh] flex-col items-center justify-center gap-3 text-center"
+      >
         <h2 className="split-scale">WOLLT IHR MIT UNS GEHEN?</h2>
-        <h3 className="split-scale">JA? NEIN? VIELLEICHT? FALLS JA, DANN VIELLEICHT SO?</h3>
+        <h3 className="relative h-[1.2em] w-full max-w-[34ch] overflow-hidden">
+          <span ref={headlineFallbackRef}>JA? NEIN? VIELLEICHT? FALLS JA, DANN VIELLEICHT SO?</span>
+          <span
+            ref={headlineStageRef}
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden items-center justify-center"
+          >
+            <span
+              ref={phaseOneGroupRef}
+              className="absolute inset-0 flex items-center justify-center gap-5 whitespace-nowrap"
+            >
+              {phaseOneHeadline.map((word, index) => (
+                <span
+                  key={word}
+                  ref={(el) => {
+                    phaseOneWordRefs.current[index] = el;
+                  }}
+                >
+                  {word}
+                </span>
+              ))}
+            </span>
+            <span
+              ref={phaseTwoGroupRef}
+              className="absolute inset-0 flex items-center justify-center gap-4 whitespace-nowrap"
+            >
+              {phaseTwoHeadline.map((word, index) => (
+                <span
+                  key={word}
+                  ref={(el) => {
+                    phaseTwoWordRefs.current[index] = el;
+                  }}
+                >
+                  {word}
+                </span>
+              ))}
+            </span>
+          </span>
+        </h3>
       </div>
 
       <div ref={gridRef} className="content-wrap relative mt-32">

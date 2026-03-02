@@ -189,7 +189,7 @@ export default function ModellDetailSection() {
         if (!cards.length) return;
 
         const count = cards.length;
-        const SLIDE_SWITCH_THRESHOLD = 0.35;
+        const SLIDE_SWITCH_THRESHOLD = 0.30;
         const SLIDE_SWITCH_BIAS = 1 - SLIDE_SWITCH_THRESHOLD;
 
         cards.forEach((card, index) => {
@@ -476,7 +476,7 @@ export default function ModellDetailSection() {
   return (
     <Section
       ref={sectionRef}
-      className="mt-32 flex w-full flex-col items-center px-0"
+      className="mt-32 flex w-full flex-col items-center !px-0"
       innerClassName="w-full"
       useContentWrap={false}
     >
@@ -495,98 +495,112 @@ export default function ModellDetailSection() {
           ref={stackRef}
           className="relative w-full flex flex-col gap-10 lg:block lg:h-[100svh] lg:w-[100vw] lg:overflow-hidden"
         >
-          {detailSlides.map((slide, index) => (
-            <div
-              key={slide.title}
-              ref={(el) => {
-                cardRefs.current[index] = el;
-              }}
-              className="flex h-[90svh] w-full items-center justify-center overflow-hidden bg-[#080716] lg:absolute lg:inset-0 lg:h-[100svh] lg:w-[100vw]"
-            >
-              <div className="content-wrap w-full">
-                <div
-                  className="relative h-[90svh] w-full overflow-hidden rounded-[20px] border border-[#37515F] bg-[#080716]"
-                  style={
-                    slide.mediaType === "bg"
-                      ? {
-                        backgroundImage: `url(${slide.mediaSrc})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center"
-                      }
-                      : undefined
-                  }
-                >
-                  {slide.mediaType === "video" ? (
-                    <video
-                      className="absolute inset-0 h-full w-full object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      src={slide.mediaSrc}
-                    />
-                  ) : null}
-                  <div className="h-full w-full">
-                    <div className="grid h-full grid-cols-2">
-                      <div className="relative h-full w-full">
-                        {slide.mediaType === "videoLeft" ? (
-                          <div className="absolute inset-x-0 inset-y-8">
-                            <video
-                              className="h-full w-full object-contain object-left"
-                              autoPlay
-                              loop
-                              muted
-                              playsInline
-                              src={slide.mediaSrc}
-                            />
-                          </div>
-                        ) : null}
-                        {slide.mediaType === "image" ? (
-                          <img
-                            src={slide.mediaSrc}
-                            alt=""
-                            className="absolute inset-0 h-full w-full object-contain object-left"
-                          />
-                        ) : null}
-                      </div>
-                      <div
-                        className={
-                          "flex h-full flex-col justify-center px-10 " +
-                          (slide.panelStyle === "overlay"
-                            ? "bg-[linear-gradient(270deg,rgba(8,7,22,0.60)_0%,#080716_100%)] backdrop-blur-md"
-                            : "")
+          {detailSlides.map((slide, index) => {
+            const isBackgroundVideo = slide.mediaType === "video";
+            const panelClass =
+              slide.mediaType === "video"
+                ? "bg-[rgba(8,7,22,0.55)] backdrop-blur-sm lg:bg-[linear-gradient(270deg,rgba(8,7,22,0.60)_0%,#080716_100%)] lg:backdrop-blur-md"
+                : slide.panelStyle === "overlay"
+                  ? "bg-[linear-gradient(270deg,rgba(8,7,22,0.60)_0%,#080716_100%)] backdrop-blur-md"
+                  : "";
+
+            return (
+              <div
+                key={slide.title}
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                className="flex w-full items-center justify-center overflow-hidden bg-[#080716] lg:absolute lg:inset-0 lg:h-[100svh] lg:w-[100vw]"
+              >
+                <div className="content-wrap w-full">
+                  <div
+                    className="relative w-full overflow-hidden rounded-[20px] border border-[#37515F] bg-[#080716] lg:h-[90svh]"
+                    style={
+                      slide.mediaType === "bg"
+                        ? {
+                          backgroundImage: `url(${slide.mediaSrc})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center"
                         }
-                      >
-                        <div className="flex h-full flex-col justify-center gap-8 py-16">
-                          <h3 className="text-left text-balance font-semibold">{slide.title}</h3>
-                          <div className="flex flex-col gap-2">
-                            <h4 className="text-left text-[clamp(1.125rem,1.45vw,1.25rem)] text-balance font-semibold">
-                              {slide.subline}
-                            </h4>
-                            <p className="text-left text-balance text-[#DBC18D]">{slide.body}</p>
-                          </div>
-                          <div
-                            ref={(el) => {
-                              listRefs.current[index] = el;
-                            }}
-                            className="slide-list-scroll mt-6 flex max-h-[250px] flex-col gap-4 overflow-y-auto overflow-x-hidden overscroll-contain pr-2"
-                            onWheel={handleListWheel}
-                            onTouchMove={handleListTouchMove}
-                          >
-                            {slide.list.map((entry) => (
-                              <div key={entry} className="flex flex-nowrap items-center gap-4">
-                                <span className="flex h-[41px] w-[41px] flex-none items-center justify-center rounded-full border border-[#DBC18D42]">
-                                  <img
-                                    src="/assets/sections/modell-detail/arrow-icon.svg"
-                                    alt=""
-                                    className="h-[11px] w-[11px]"
-                                  />
-                                </span>
-                                <p className="min-w-0 flex-shrink flex-grow-0 rounded-[30px] border border-[#DBC18D42] px-4 py-2 text-left text-balance">
-                                  {entry}
-                                </p>
-                              </div>
-                            ))}
+                        : undefined
+                    }
+                  >
+                    {slide.mediaType === "video" ? (
+                      <video
+                        className="absolute inset-0 h-full w-full object-cover"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        src={slide.mediaSrc}
+                      />
+                    ) : null}
+                    <div className="h-full w-full">
+                      <div className="grid h-full grid-rows-[minmax(220px,auto)_auto] lg:grid-cols-2 lg:grid-rows-1">
+                        <div
+                          className={
+                            "relative w-full min-h-[220px] lg:h-full " +
+                            (isBackgroundVideo ? "hidden lg:block" : "")
+                          }
+                        >
+                          {slide.mediaType === "videoLeft" ? (
+                            <div className="absolute inset-x-0 inset-y-6 lg:inset-y-8">
+                              <video
+                                className="h-full w-full object-contain object-left"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                src={slide.mediaSrc}
+                              />
+                            </div>
+                          ) : null}
+                          {slide.mediaType === "image" ? (
+                            <img
+                              src={slide.mediaSrc}
+                              alt=""
+                              className="absolute inset-0 h-full w-full object-contain object-left"
+                            />
+                          ) : null}
+                        </div>
+                        <div
+                          className={
+                            "relative z-[1] row-span-1 flex h-full flex-col justify-center px-6 lg:px-10 " +
+                            (isBackgroundVideo ? "row-span-2 lg:row-span-1 lg:col-start-2 " : "") +
+                            panelClass
+                          }
+                        >
+                          <div className="flex h-full flex-col justify-center gap-6 py-10 lg:gap-8 lg:py-16">
+                            <h3 className="text-left text-balance font-semibold">{slide.title}</h3>
+                            <div className="flex flex-col gap-2">
+                              <h4 className="text-left text-[clamp(1.125rem,1.45vw,1.25rem)] text-balance font-semibold">
+                                {slide.subline}
+                              </h4>
+                              <p className="text-left text-balance text-[#DBC18D]">{slide.body}</p>
+                            </div>
+                            <div
+                              ref={(el) => {
+                                listRefs.current[index] = el;
+                              }}
+                              className="slide-list-scroll mt-4 flex max-h-[220px] flex-col gap-4 overflow-y-auto overflow-x-hidden overscroll-contain pr-2 lg:mt-6 lg:max-h-[250px]"
+                              onWheel={handleListWheel}
+                              onTouchMove={handleListTouchMove}
+                            >
+                              {slide.list.map((entry) => (
+                                <div key={entry} className="flex flex-nowrap items-center gap-4">
+                                  <span className="flex h-[41px] w-[41px] flex-none items-center justify-center rounded-full border border-[#DBC18D42]">
+                                    <img
+                                      src="/assets/sections/modell-detail/arrow-icon.svg"
+                                      alt=""
+                                      className="h-[11px] w-[11px]"
+                                    />
+                                  </span>
+                                  <p className="min-w-0 flex-shrink flex-grow-0 rounded-[30px] border border-[#DBC18D42] px-4 py-2 text-left text-balance">
+                                    {entry}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -594,8 +608,8 @@ export default function ModellDetailSection() {
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </Section>

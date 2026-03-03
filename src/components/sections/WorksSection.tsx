@@ -14,7 +14,7 @@ type WorkItem = {
 const works: WorkItem[] = [
   {
     title: "Redaktionsplanung für Thought Leadership",
-    image: "/assets/sections/works/Image20260302152602.png"
+    image: "/assets/sections/works/daimler-board.png"
   },
   {
     title: "TalentRadar für Employer Branding",
